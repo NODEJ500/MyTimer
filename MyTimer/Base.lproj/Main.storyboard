@@ -30,10 +30,16 @@
                                 <state key="normal" image="btn_start">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="startButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="quh-nh-CBc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMk-Jp-Xye">
                                 <rect key="frame" x="217" y="478" width="140" height="140"/>
                                 <state key="normal" image="btn_stop"/>
+                                <connections>
+                                    <action selector="stopButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Z3-A3-N6i"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -52,9 +58,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Byg-Ab-tkp">
-                        <barButtonItem key="rightBarButtonItem" title="秒数設定" id="ZCD-01-Z32"/>
+                        <barButtonItem key="rightBarButtonItem" title="秒数設定" id="ZCD-01-Z32">
+                            <connections>
+                                <action selector="settingButtonAction:" destination="BYZ-38-t0r" id="AFI-AL-DEJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="countDownLabel" destination="lub-K0-jtH" id="DW6-e8-gBB"/>
                         <segue destination="fkk-br-Nf8" kind="show" identifier="goSetting" id="7Wr-bF-Tz1"/>
                     </connections>
                 </viewController>
@@ -62,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="Aqq-ds-WnO">
             <objects>
-                <viewController id="fkk-br-Nf8" sceneMemberID="viewController">
+                <viewController id="fkk-br-Nf8" customClass="SettingViewController" customModule="MyTimer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JG3-LE-3Ri">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
