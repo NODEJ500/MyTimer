@@ -33,19 +33,48 @@ class ViewController: UIViewController {
     
     
     @IBAction func settingButtonAction(_ sender: Any) {
-        
-        
+        //timerをアンラップしてnowTimerに代入
+        if let nowTimer = timer {
+            //もしタイマーが実行中だったら停止
+            if nowTimer.isValid == true  {
+                
+                //タイマー停止
+                nowTimer.invalidate()
+            }
+        }
+        //画面遷移を行う
+        performSegue(withIdentifier: "goSetting", sender: nil)
     }
     
     
     @IBAction func startButtonAction(_ sender: Any) {
+        //timerをアンラップしてnowTimerに代入
+        if let nowTimar = timer {
+            //もしタイマーが実行中だったらスタートしない
+            if nowTimar.isValid == true {
+                //何も処理しない
+                return
+            }
+        }
+        //タイマーをスタート
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.timerInterrupt(_:)), userInfo: nil, repeats: true)
     }
     
     
     @IBAction func stopButtonAction(_ sender: Any) {
+        //timerをアンラップしてnowTimerに代入
+        if let nowTimer = timer {
+            //もしタイマーが、実行中だったら停止
+            if nowTimer.isValid == true {
+                //タイマー停止
+                nowTimer.invalidate()
+            }
+        }
+       
     }
     
-    func displayUpdate() -> Int{
+    //画面を更新する（戻り値:remainCount:残り時間）
+    func displayUpdate() -> Int {
         
         //UserDefaultsのインスタンスを作成
         let setting = UserDefaults.standard
@@ -58,6 +87,28 @@ class ViewController: UIViewController {
         //残り時間を戻り値に設定
         return remainCount
         
+    }
+    
+    @objc func timerInterrupt(_ timer:Timer) {
+        
+        //count(経過時間)に+1していく
+        count += 1
+        //remianCount(残り時間)が0以下の時、タイマーを止める
+        if displayUpdate() <= 0 {
+            
+            //初期化処理
+            count = 0
+            //タイマー停止
+            timer.invalidate()
+        }
+    }
+    
+    //画面切り替えのタイミングで処理を行う
+    override func viewDidAppear(_ animated: Bool) {
+        //カウント（経過時間）をゼロにする
+        count = 0
+        //タイマーの表示を更新する
+        _ = displayUpdate()
     }
     
 }
