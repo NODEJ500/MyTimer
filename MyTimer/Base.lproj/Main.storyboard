@@ -87,6 +87,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTO-YM-vNJ">
                                 <rect key="frame" x="147" y="488" width="120" height="120"/>
                                 <state key="normal" image="btn_ decision"/>
+                                <connections>
+                                    <action selector="decisionButtonAction:" destination="fkk-br-Nf8" eventType="touchUpInside" id="r5c-n9-ACB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JWR-De-Ibu"/>
@@ -100,6 +103,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Xi8-bu-Shr"/>
+                    <connections>
+                        <outlet property="timerSettingPicker" destination="gEm-Xi-pmG" id="pyY-9w-tEA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6x-1L-3y3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
