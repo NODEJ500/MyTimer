@@ -26,15 +26,9 @@ class ViewController: UIViewController {
     }
 
     @IBOutlet weak var countDownLabel: UILabel!
+    
     @IBAction func settingButtonAction(_ sender: Any) {
-        //timerをアンラップしてnowTimerに代入
-        if let nowTimer = timer {
-            //もしタイマーが実行中だったら停止
-            if nowTimer.isValid == true {
-                //タイマー停止
-                nowTimer.invalidate()
-            }
-        }
+        checktimer()
         //画面遷移を行う
         performSegue(withIdentifier: "goSetting", sender: nil)
     }
@@ -51,14 +45,7 @@ class ViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.timerInterrupt(_:)), userInfo: nil, repeats: true)
     }
     @IBAction func stopButtonAction(_ sender: Any) {
-        //timerをアンラップしてnowTimerに代入
-        if let nowTimer = timer {
-            //もしタイマーが、実行中だったら停止
-            if nowTimer.isValid == true {
-                //タイマー停止
-                nowTimer.invalidate()
-            }
-        }
+        checktimer()
     }
     
     //画面を更新する（戻り値:remainCount:残り時間）
@@ -102,5 +89,15 @@ class ViewController: UIViewController {
         //タイマーの表示を更新する
         _ = displayUpdate()
     }
+    //リファクタリング
+    func checktimer() {
+        //timerをアンラップしてnowTimerに代入
+        if let nowTimer = timer {
+            //もしタイマーが、実行中だったら停止
+            if nowTimer.isValid == true {
+                //タイマー停止
+                nowTimer.invalidate()
+            }
+        }
+    }
 }
-
